@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
-  <!-- PWA & Home Screen Settings (This pulls your logo.png for the app icon) -->
+  <!-- PWA & Home Screen Settings -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="EXTRA">
@@ -13,6 +13,11 @@
   <meta name="theme-color" content="#050505">
   
   <title>EXTRA · Personal Fitness</title>
+  
+  <!-- Google Fonts: Bebas Neue -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -35,7 +40,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px 20px 120px; /* Bottom padding for floating nav */
+      padding: 16px 20px 120px;
       letter-spacing: -0.015em;
     }
 
@@ -74,19 +79,19 @@
       margin-bottom: 8px;
     }
 
-    /* ——— RED METALLIC TITLE (Agency FB) ——— */
+    /* ——— RED METALLIC TITLE (Bebas Neue) ——— */
     .metallic-red-text {
-      font-family: "Agency FB", "Arial Narrow", -apple-system, sans-serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem; /* Larger since Bebas Neue is naturally compact */
+      letter-spacing: 2px;
       text-transform: uppercase;
-      background: linear-gradient(180deg, #ff6666 0%, #cc0000 35%, #660000 55%, #ff8080 100%);
+      background: linear-gradient(180deg, #ff7b7b 0%, #e60000 40%, #7a0000 60%, #ff9999 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.8));
       line-height: 1;
+      margin-top: 4px;
     }
 
     /* ——— BOTTOM NAVIGATION BAR ——— */
@@ -298,7 +303,7 @@
       .dashboard-grid { grid-template-columns: 1fr; }
       .planner-grid { grid-template-columns: 1fr; }
       body { padding: 12px 16px 100px; }
-      .metallic-red-text { font-size: 2.4rem; }
+      .metallic-red-text { font-size: 3rem; }
       .workout-panel { padding: 24px; }
       .timer-display { font-size: 3rem; }
       .bottom-nav button span { display: none; }
@@ -320,7 +325,7 @@
 </head>
 <body>
 
-<!-- ——— TOP HEADER (Text Only) ——— -->
+<!-- ——— TOP HEADER (Bebas Neue Text) ——— -->
 <header class="top-header">
   <span class="metallic-red-text">EXTRA</span>
 </header>
