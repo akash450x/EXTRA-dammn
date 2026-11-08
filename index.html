@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <!-- PWA & Home Screen Settings -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="EXTRA">
-  <meta name="theme-color" content="#000000">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="icon" type="image/png" href="logo.png">
+  <meta name="theme-color" content="#050505">
+  
   <title>EXTRA · Personal Fitness</title>
   
   <!-- Lucide Icons -->
@@ -30,7 +35,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px 20px 40px;
+      padding: 16px 20px 120px; /* Added bottom padding for the floating bottom nav */
       letter-spacing: -0.015em;
     }
 
@@ -58,13 +63,8 @@
       transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .glass:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    /* ——— NAVIGATION ——— */
-    .top-nav {
+    /* ——— TOP HEADER ——— */
+    .top-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,79 +74,75 @@
       margin-bottom: 8px;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo img {
-      height: 32px;
+    /* The exact image provided, cropped cleanly */
+    .header-logo {
+      height: 45px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8));
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
     }
 
-    .nav-links {
+    /* ——— RED METALLIC TITLE ——— */
+    .metallic-red-text {
+      font-family: "Agency FB", "Arial Narrow", -apple-system, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ff4d4d 0%, #cc0000 40%, #660000 60%, #ff8080 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.6));
+    }
+
+    /* ——— BOTTOM NAVIGATION BAR ——— */
+    .bottom-nav {
+      position: fixed;
+      bottom: 24px; /* Floats above the home indicator */
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      gap: 4px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 4px;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      gap: 6px;
+      background: rgba(20, 20, 25, 0.8);
+      backdrop-filter: blur(32px);
+      -webkit-backdrop-filter: blur(32px);
+      padding: 8px 12px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+      z-index: 900;
+      width: max-content;
+      max-width: 90vw;
     }
 
-    .nav-links button {
+    .bottom-nav button {
       background: transparent;
       border: none;
       color: #86868b;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 6px 16px;
-      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 24px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       font-family: inherit;
     }
 
-    .nav-links button i { width: 14px; height: 14px; stroke-width: 2; }
+    .bottom-nav button i { width: 18px; height: 18px; stroke-width: 2.5; }
 
-    .nav-links button.active {
+    .bottom-nav button.active {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    .nav-links button:hover:not(.active) {
+    .bottom-nav button:hover:not(.active) {
       color: #d0d0d5;
     }
-
-    .avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .avatar:hover { background: rgba(255, 255, 255, 0.15); }
 
     /* ——— MAIN CONTAINER ——— */
     .app-container {
@@ -304,17 +300,17 @@
     @media (max-width: 900px) {
       .dashboard-grid { grid-template-columns: 1fr 1fr; }
       .planner-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links button span { display: none; }
-      .nav-links button { padding: 8px; }
     }
     @media (max-width: 600px) {
       .dashboard-grid { grid-template-columns: 1fr; }
       .planner-grid { grid-template-columns: 1fr; }
-      body { padding: 12px; }
-      .logo img { height: 28px; }
-      .nav-left { gap: 16px; }
+      body { padding: 12px 16px 100px; }
+      .header-logo { height: 35px; }
       .workout-panel { padding: 24px; }
       .timer-display { font-size: 3rem; }
+      .bottom-nav button span { display: none; } /* Hide text on very small screens, keep icons */
+      .bottom-nav button { padding: 10px; }
+      .bottom-nav button i { width: 22px; height: 22px; }
     }
 
     /* ——— SCROLLBAR ——— */
@@ -331,23 +327,12 @@
 </head>
 <body>
 
-<!-- ——— TOP NAVIGATION ——— -->
-<nav class="top-nav">
-  <div class="nav-left">
-    <div class="logo">
-      <!-- BASE64 EMBEDDED LOGO to ensure it never breaks -->
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZmZmZmIi8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiM4ODg4ODgiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzMzMzMzMiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ii1hcHBsZS1zeXN0ZW0sICdTRiBQcm8gRGlzcGxheScsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTAwIiBmb250LXdlaWdodD0iODAwIiBmb250LXN0eWxlPSJpdGFsaWMiIGZpbGw9InVybCgjZykiIGxldHRlci1zcGFjaW5nPSI1Ij5FWFRSQTwvdGV4dD48L3N2Zz4=" alt="EXTRA" />
-    </div>
-    <div class="nav-links" id="navLinks">
-      <button data-view="dashboard" class="active"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
-      <button data-view="planner"><i data-lucide="calendar"></i><span>Planner</span></button>
-      <button data-view="library"><i data-lucide="dumbbell"></i><span>Library</span></button>
-      <button data-view="progress"><i data-lucide="trending-up"></i><span>Progress</span></button>
-      <button data-view="settings"><i data-lucide="settings"></i><span>Settings</span></button>
-    </div>
-  </div>
-  <div class="avatar" id="profileAvatar">EX</div>
-</nav>
+<!-- ——— TOP HEADER ——— -->
+<header class="top-header">
+  <!-- The image you provided -->
+  <img src="logo.png" alt="EXTRA Logo" class="header-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+  <span class="metallic-red-text" style="display:none;">EXTRA</span>
+</header>
 
 <!-- ——— APP CONTAINER ——— -->
 <div class="app-container" id="appContainer">
@@ -373,7 +358,7 @@
           <div class="progress-ring">
             <svg width="56" height="56" viewBox="0 0 56 56">
               <circle cx="28" cy="28" r="24" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="4"/>
-              <circle id="progressRingFill" cx="28" cy="28" r="24" fill="none" stroke="#fff" stroke-width="4"
+              <circle id="progressRingFill" cx="28" cy="28" r="24" fill="none" stroke="#ff4d4d" stroke-width="4"
                       stroke-dasharray="150.8" stroke-dashoffset="60" stroke-linecap="round"/>
             </svg>
           </div>
@@ -545,13 +530,22 @@
         </div>
         <div class="flex-between mt-2">
           <span class="text-secondary">Accent</span>
-          <span style="font-weight: 500; color: #fff;">Monochrome</span>
+          <span style="font-weight: 500; color: #ff4d4d;">Ruby Red</span>
         </div>
       </div>
     </div>
   </div>
 
 </div>
+
+<!-- ——— BOTTOM NAVIGATION BAR ——— -->
+<nav class="bottom-nav" id="navLinks">
+  <button data-view="dashboard" class="active"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></button>
+  <button data-view="planner"><i data-lucide="calendar"></i><span>Planner</span></button>
+  <button data-view="library"><i data-lucide="dumbbell"></i><span>Library</span></button>
+  <button data-view="progress"><i data-lucide="trending-up"></i><span>Progress</span></button>
+  <button data-view="settings"><i data-lucide="settings"></i><span>Settings</span></button>
+</nav>
 
 <!-- ——— LIVE WORKOUT OVERLAY ——— -->
 <div class="workout-overlay" id="workoutOverlay">
@@ -603,49 +597,41 @@
     },
     completedWorkouts: {},
     exerciseLibrary: [
-      // Chest (5)
       { name: 'Bench Press', category: 'Chest', muscles: 'Chest, Triceps, Shoulders', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '8-10', rest: '60s' },
       { name: 'Push-Up', category: 'Chest', muscles: 'Chest, Triceps, Core', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 3, reps: '10-15', rest: '45s' },
       { name: 'Incline Dumbbell Press', category: 'Chest', muscles: 'Upper Chest, Shoulders', equipment: 'Dumbbells', difficulty: 'Intermediate', sets: 3, reps: '8-12', rest: '60s' },
       { name: 'Cable Crossover', category: 'Chest', muscles: 'Inner Chest', equipment: 'Cable', difficulty: 'Intermediate', sets: 3, reps: '12-15', rest: '45s' },
       { name: 'Dumbbell Fly', category: 'Chest', muscles: 'Chest', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '60s' },
-      // Back (5)
       { name: 'Pull-Up', category: 'Back', muscles: 'Lats, Biceps, Core', equipment: 'Bodyweight', difficulty: 'Intermediate', sets: 3, reps: '6-10', rest: '90s' },
       { name: 'Bent-Over Row', category: 'Back', muscles: 'Lats, Rhomboids, Biceps', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '8-12', rest: '60s' },
       { name: 'Lat Pulldown', category: 'Back', muscles: 'Lats, Biceps', equipment: 'Cable', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '60s' },
       { name: 'Seated Cable Row', category: 'Back', muscles: 'Mid-Back, Lats', equipment: 'Cable', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '60s' },
       { name: 'Single-Arm Dumbbell Row', category: 'Back', muscles: 'Lats, Core', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '10/arm', rest: '45s' },
-      // Shoulders (5)
       { name: 'Overhead Press', category: 'Shoulders', muscles: 'Shoulders, Triceps', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '8-10', rest: '60s' },
       { name: 'Lateral Raise', category: 'Shoulders', muscles: 'Side Delts', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '12-15', rest: '45s' },
       { name: 'Front Raise', category: 'Shoulders', muscles: 'Front Delts', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '12-15', rest: '45s' },
       { name: 'Face Pull', category: 'Shoulders', muscles: 'Rear Delts, Rotator Cuff', equipment: 'Cable', difficulty: 'Beginner', sets: 3, reps: '15-20', rest: '45s' },
       { name: 'Arnold Press', category: 'Shoulders', muscles: 'All Delts', equipment: 'Dumbbells', difficulty: 'Intermediate', sets: 3, reps: '8-12', rest: '60s' },
-      // Arms (6)
       { name: 'Bicep Curl', category: 'Arms', muscles: 'Biceps', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '45s' },
       { name: 'Tricep Pushdown', category: 'Arms', muscles: 'Triceps', equipment: 'Cable', difficulty: 'Beginner', sets: 3, reps: '12-15', rest: '45s' },
       { name: 'Hammer Curl', category: 'Arms', muscles: 'Biceps, Forearms', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '45s' },
       { name: 'Overhead Tricep Extension', category: 'Arms', muscles: 'Triceps', equipment: 'Dumbbells', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '45s' },
       { name: 'Preacher Curl', category: 'Arms', muscles: 'Biceps', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '8-10', rest: '60s' },
       { name: 'Skull Crusher', category: 'Arms', muscles: 'Triceps', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '8-12', rest: '60s' },
-      // Legs (6)
       { name: 'Squat', category: 'Legs', muscles: 'Quads, Glutes, Core', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '6-8', rest: '120s' },
       { name: 'Romanian Deadlift', category: 'Legs', muscles: 'Hamstrings, Glutes', equipment: 'Barbell', difficulty: 'Intermediate', sets: 3, reps: '8-10', rest: '90s' },
       { name: 'Walking Lunge', category: 'Legs', muscles: 'Quads, Glutes', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 3, reps: '10/leg', rest: '60s' },
       { name: 'Leg Press', category: 'Legs', muscles: 'Quads, Glutes', equipment: 'Machine', difficulty: 'Beginner', sets: 3, reps: '10-12', rest: '60s' },
       { name: 'Calf Raise', category: 'Legs', muscles: 'Calves', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 4, reps: '15-20', rest: '30s' },
       { name: 'Bulgarian Split Squat', category: 'Legs', muscles: 'Quads, Glutes', equipment: 'Dumbbells', difficulty: 'Intermediate', sets: 3, reps: '8/leg', rest: '60s' },
-      // Core (5)
       { name: 'Plank', category: 'Core', muscles: 'Core, Shoulders', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 3, reps: '30-45s', rest: '30s' },
       { name: 'Dead Bug', category: 'Core', muscles: 'Deep Core', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 3, reps: '8/side', rest: '30s' },
       { name: 'Russian Twist', category: 'Core', muscles: 'Obliques', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 3, reps: '15/side', rest: '30s' },
       { name: 'Hanging Knee Raise', category: 'Core', muscles: 'Lower Abs', equipment: 'Bodyweight', difficulty: 'Intermediate', sets: 3, reps: '10-12', rest: '45s' },
       { name: 'Cable Crunch', category: 'Core', muscles: 'Abs', equipment: 'Cable', difficulty: 'Intermediate', sets: 3, reps: '12-15', rest: '45s' },
-      // Full Body (3)
       { name: 'Burpee', category: 'Full Body', muscles: 'Full Body', equipment: 'Bodyweight', difficulty: 'Intermediate', sets: 3, reps: '8-10', rest: '60s' },
       { name: 'Kettlebell Swing', category: 'Full Body', muscles: 'Posterior Chain', equipment: 'Kettlebell', difficulty: 'Intermediate', sets: 3, reps: '15-20', rest: '60s' },
       { name: 'Clean and Press', category: 'Full Body', muscles: 'Full Body', equipment: 'Dumbbells', difficulty: 'Advanced', sets: 3, reps: '6-8', rest: '90s' },
-      // Mobility (4)
       { name: 'Cat-Cow Stretch', category: 'Mobility', muscles: 'Spine, Core', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 2, reps: '10 cycles', rest: '20s' },
       { name: 'Hip Flexor Stretch', category: 'Mobility', muscles: 'Hips', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 2, reps: '30s/side', rest: '15s' },
       { name: 'Thoracic Rotation', category: 'Mobility', muscles: 'Mid-Back', equipment: 'Bodyweight', difficulty: 'Beginner', sets: 2, reps: '8/side', rest: '20s' },
@@ -693,7 +679,6 @@
         if (parsed.completedWorkouts) state.completedWorkouts = parsed.completedWorkouts;
       } catch(e) { console.warn('Failed to load state', e); }
     }
-    // Seed sample data if empty
     if (Object.keys(state.completedWorkouts).length === 0) {
       const today = new Date();
       for (let i = 1; i <= 20; i++) {
